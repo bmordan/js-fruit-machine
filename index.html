@@ -6,38 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Titan One";
+            font-size: 50px;
+            color: lime;
+            text-shadow: 1px 1px 2px black;
+        }
         .tumblers {
-            width: 33vw;
+            width: 33.25vw;
             margin: auto;
             display: grid;
             grid-template-columns: auto auto auto;
-            background-color: hotpink;
+            background-color: beige;
             overflow-y: hidden;
         }
         .tumbler {
-            border: solid 2px black;
+            border: solid 1px black;
             width: 140px;
             height: 300px;
         }
-        .tumbler div {
-            position: relative;
-            bottom: 1px;
+        .tumbler ul {
+            padding: 0;
+            margin: 0;
             height: 100%;
             margin: auto;
+            position: relative;
+        }
+        .tumbler ul div {
+            margin: auto;
+            left: 0;
+            right: 0;
         }
         .controls {
             display: flex;
-            justify-content: center;
+            justify-content: end;
             align-items: center;
             padding: 3rem;
         }
         .controls button {
-            padding: 3rem;
-            background-color: red;
+            background-color: lime;
             color: white;
-            font-size: 100px;
+            font-size: 60px;
             border: solid 0px;
-            border-radius: 3rem;
+            border-radius: 50%;
+            width: 12rem;
+            height: 12rem;
+            box-shadow: 1px 1px 6px -1px gray;
         }
     </style>
 </head>
@@ -48,69 +66,19 @@
     <main>
         <section class="tumblers">
             <article class="tumbler">
-                <div id="tumbler-01"></div>
+                <ul id="tumbler-01"></ul>
+            </article>
+            <article class="tumbler">
+                <ul id="tumbler-02"></ul>
+            </article>
+            <article class="tumbler">
+                <ul id="tumbler-03"></ul>
             </article>
         </section>
         <section class="controls">
-            <button onclick="spin()">Play</button>
+            <button onclick="spin()">SPIN</button>
         </section>
     </main>
-    <script>
-        class Fruit {
-            constructor(imgFile) {
-                const element = document.createElement('div')
-                element.setAttribute('style', `
-                    background-image: url(./${imgFile}.png);
-                    background-size: cover;
-                    background-position: center;
-                    height: 105px;
-                    width: 105px;
-                    position: relative;
-                `)
-                document.getElementById('tumbler-01').appendChild(element)
-                this.el = element
-            }
-
-            setPos(bottom) {
-                this.el.style.top = `${bottom}px`
-            }
-        }
-        class Spinner {
-            constructor(tumberNum) {
-                this.fruits = [
-                    new Fruit('01'),
-                    new Fruit('02'),
-                    new Fruit('03'),
-                    new Fruit('04')
-                ]
-                this.element = document.getElementById(`tumbler-${tumberNum}`)
-                this.fruits.forEach((fruit, index) => {
-                    // const bottom = 105 * index
-                    // console.log({index, bottom})
-                    // fruit.setPos(bottom)
-                })
-            }
-        }
-
-        new Spinner('01')
-
-        // let spinning = false
-        // function spin() {
-        //     if (spinning) return
-        //     const spinId = setInterval(() => {
-        //         spinning = true
-        //         const t1 = document.getElementById('tumbler-01')
-        //         const bottom = window.getComputedStyle(t1)
-        //         const currentVal = bottom['bottom'].substring(0, bottom['bottom'].length - 2)
-        //         const nextVal = Number(currentVal) - 5
-        //         t1.style.bottom = `${nextVal}px`
-        //         if (nextVal < -850) {
-        //             t1.style.bottom = `-3px`
-        //             // clearInterval(spinId)
-        //             // spinning = false
-        //         }
-        //     }, 10)
-        // }
-    </script>
+    <script src="./main.js"></script>
 </body>
 </html>
